@@ -1,0 +1,169 @@
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.badge {
+    --bs-badge-padding-x: 1em;
+    --bs-badge-padding-y: 0.49em;
+    --bs-badge-font-size: 0.81em;
+    --bs-badge-font-weight: 600;
+    --bs-badge-color: #fff;
+    --bs-badge-border-radius: 0.25rem;
+    display: inline-block;
+    padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+    font-size: var(--bs-badge-font-size);
+    font-weight: var(--bs-badge-font-weight);
+    line-height: 1;
+    color: var(--bs-badge-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--bs-badge-border-radius);
+}
+
+.bg-label-success {
+    background-color: #dff7e9 !important;
+    color: #28c76f !important;
+}
+
+.bg-label-warning {
+    background-color: #fff1e3 !important;
+    color: #ff4943 !important;
+}
+
+.bg-label-yellow {
+    background-color: #7a3e07e8 !important;
+    color: #fbcb9c !important;
+}
+
+.bg-label-info {
+    background-color: #274c62 !important;
+    color: #00cfe8 !important;
+}
+
+label.required::after {
+    content: " *";
+    /* Add a space and the asterisk (*) character after the label */
+    color: red;
+    /* Set the color to red, change as needed */
+}
+
+.right-align {
+    text-align: right;
+}
+
+.card-profile .card-body {
+    padding: 1rem 2.3rem 1.5rem 2.3rem;
+}
+
+.round-initial {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #233c81;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.user-profile-img {
+    width: 20%;
+    object-fit: cover;
+    border-radius: 50% !important;
+}
+
+.flex-shrink-0 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px;
+}
+
+.accordion-header {
+    background: linear-gradient(118deg, #233c81, rgba(240, 103, 103, 0.7));
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    font-size: 17px;
+    display: flex;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 0.8;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.accordion-body {
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.accordion-content {
+    display: none;
+}
+
+.active {
+    display: block;
+    transition: 1s ease-in-out;
+}
+
+/* Sidebar hover effects */
+.main-menu.menu-light .navigation > li > a:hover {
+    background: rgb(35 60 129 / 36%);
+    color: #fff;
+}
+
+.main-menu.menu-light .navigation > li > a:hover i,
+.main-menu.menu-light .navigation > li > a:hover span {
+    color: #fff;
+}
+
+.main-menu.menu-light .navigation > li.active > a {
+    background: linear-gradient(118deg, #233c81, rgb(35 60 129 / 36%));
+    box-shadow: 0 0 10px 1px rgb(35 60 129 / 36%);
+}
+
+.main-menu.menu-light .navigation > li.active > a i,
+.main-menu.menu-light .navigation > li.active > a span {
+    color: #fff;
+}
+
+/* Hover transition */
+.main-menu.menu-light .navigation > li > a {
+    transition: all 0.3s ease;
+} 
+
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgb(35 60 129 / 36%) !important;
+}
+
+.main-menu .navbar-header {
+    padding: 1.35rem 18px 0.3rem 18px !important;
+    font-weight: 500;
+    background: #233c81;
+    color: #fff;
+}
+
+.main-menu.menu-dark .navigation > li.active > a {
+    background: linear-gradient(118deg, #233c81, rgb(35 60 129 / 0%)) !important;
+    box-shadow: 0 0 10px 1px rgb(163 163 163 / 70%) !important;
+}
