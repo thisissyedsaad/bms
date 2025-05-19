@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public Frontend Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', fn () => redirect('/admin/login'));
+Route::get('/admin', fn () => redirect('/admin/login'));
 
 require __DIR__ . '/auth.php';
 // require __DIR__ . '/customer-auth.php';
