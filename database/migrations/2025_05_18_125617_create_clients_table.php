@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('source_id')->constrained()->onDelete('cascade')->nullable(); // who brought this client
+            $table->boolean('lifetime_commission')->default(false);  // does this source get commission on every project?
             $table->string('profile_photo')->nullable();
             $table->string('full_name');
             $table->string('profile_name')->unique();

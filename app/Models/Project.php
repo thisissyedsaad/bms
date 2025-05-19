@@ -10,8 +10,12 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'client_id',
         'title',
+        'client_id',
+        'source_id',
+        'is_commission_applicable',
+        'commission_type',
+        'commission_value',
         'conversion_rate',
         'total_amount',
         'received_amount',
@@ -32,5 +36,10 @@ class Project extends Model
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }    
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
     }    
 }

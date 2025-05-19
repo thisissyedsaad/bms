@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained()->onDelete('cascade')->nullable();
             $table->string('title')->nullable();
-            $table->decimal('conversion_rate', 12, 6)->nullable();
-            $table->decimal('total_amount', 12, 2)->nullable();
-            $table->decimal('received_amount', 12, 2)->nullable();
+            $table->foreignId('client_id')->constrained()->onDelete('cascade')->nullable();
+            $table->foreignId('source_id')->constrained()->onDelete('cascade')->nullable();
+            $table->boolean('is_commission_applicable')->default(false); // true if this project pays commission
+            $table->enum('commission_type', ['on_cost', 'on_profit', 'fixed'])->default('on_cost');
+            $table->decimal('commission_value', 5, 2)->nullable();   // e.g. 10.00 (10%)
+            $table->decimal('conversion_rate', 12, 6)->nullable();   // e.g 275 PKR = 1 USD
+            $table->decimal('total_amount', 12, 2)->nullable();     // actual project cost
+            $table->decimal('received_amount', 12, 2)->nullable(); // net profit after outsource expense 
             $table->string('currency')->nullable();
             $table->enum('project_type', ['fixed', 'hourly'])->default('fixed');
             $table->decimal('hourly_rate', 10, 2)->nullable();

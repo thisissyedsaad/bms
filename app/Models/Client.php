@@ -10,6 +10,8 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = [
+        'source_id',
+        'lifetime_commission',
         'profile_photo',
         'full_name',
         'profile_name',
@@ -34,4 +36,9 @@ class Client extends Model
     {
         return $this->hasMany(Project::class);
     }      
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }    
 }

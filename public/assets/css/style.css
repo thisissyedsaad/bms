@@ -167,3 +167,7 @@ label.required::after {
     background: linear-gradient(118deg, #233c81, rgb(35 60 129 / 0%)) !important;
     box-shadow: 0 0 10px 1px rgb(163 163 163 / 70%) !important;
 }
+
+.alert {
+    padding: 0.71rem 1rem !important;
+}

@@ -29,7 +29,6 @@ class ClientController extends Controller
                     ->orWhere('email', 'like', '%' . $searchTerm . '%')
                     ->orWhere('mobile_number', 'like', '%' . $searchTerm . '%')
                     ->orWhere('profile_name', 'like', '%' . $searchTerm . '%');
-                // Add more fields to search as needed
             });
         }
 
@@ -89,6 +88,7 @@ class ClientController extends Controller
 
         $userId = Auth::user()->id;
         $validated['created_by'] = $userId;
+        $validated['source_id'] = 1;
         
         // Extract address data
         $addressData = [

@@ -29,6 +29,14 @@
                     <span class="menu-title text-truncate">Dashboard</span>
                 </a>
             </li>
+
+            <li class="{{ Request::is('admin/sources*') ? 'active' : '' }}">
+                <a href="{{ route('sources.index') }}">
+                    <i style="margin-bottom: 5px;" data-feather="users"></i>
+                    <span class="menu-title text-truncate">Sources</span>
+                </a>
+            </li>
+
             <li class="{{ Request::is('admin/clients*') ? 'active' : '' }}">
                 <a href="{{ route('clients.index') }}">
                     <i style="margin-bottom: 5px;" data-feather="users"></i>

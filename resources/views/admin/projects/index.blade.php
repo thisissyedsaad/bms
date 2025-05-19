@@ -140,7 +140,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>Project Title</th>
@@ -191,12 +191,9 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{ route('projects.edit', $project) }}" class="mr-1">
-                                                        <i data-feather="edit-2"></i>
-                                                    </a>
-                                                    <a id="project_delete_id:{{ $project->id }}:{{ $project->title }}"
-                                                        onclick="deleteModel(this.id)" style="cursor: pointer;">
-                                                        <i data-feather="trash-2" style="color:red;"></i>
+                                                    <a href="{{ route('projects.edit', $project) }}" class="btn btn-sm btn-icon mr-1"><i data-feather="edit-2"></i></a>
+                                                    <a id="project_delete_id:{{ $project->id }}:{{ $project->title }}" onclick="deleteModel(this.id)" style="cursor: pointer;">
+                                                        <i data-feather="trash-2" class="text-danger"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -209,7 +206,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $projects->links() }}
+                        <div class="d-flex justify-content-center mt-3">
+                            {{ $projects->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>
