@@ -266,6 +266,26 @@
                 console.error(error);
             });
     </script>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const projectType = document.getElementById('project_type');
+        const hourlyFields = ['hourly_rate', 'estimated_hours'];
+
+        function toggleHourlyFields() {
+            const isHourly = projectType.value === 'hourly';
+            hourlyFields.forEach(id => {
+                const field = document.getElementById(id).closest('.form-group');
+                if (field) {
+                    field.style.display = isHourly ? 'block' : 'none';
+                }
+            });
+        }
+
+        toggleHourlyFields();
+        projectType.addEventListener('change', toggleHourlyFields);
+    });
+</script> -->
 @endsection
 
 @section('styles')
