@@ -58,7 +58,7 @@
                 </a>
             </li> -->
 
-            <li class="navigation-header">
+            <!-- <li class="navigation-header">
                 <span>Settings</span>
                 <i data-feather="more-horizontal"></i>
             </li>
@@ -68,7 +68,7 @@
                     <i style="margin-bottom: 5px;" data-feather="download"></i>
                     <span class="menu-title text-truncate">Export Database</span>
                 </a>
-            </li>
+            </li> -->
             <div class="mb-5"></div>
         </ul>
     </div>

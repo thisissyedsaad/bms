@@ -27,7 +27,6 @@ class Project extends Model
         'assigned_to',
         'start_date',
         'end_date',
-        'platform',
         'status',
         'created_by',
         'updated_by',

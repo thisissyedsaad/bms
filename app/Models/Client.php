@@ -19,7 +19,7 @@ class Client extends Model
         'tagline',
         'mobile_number',
         'whatsapp_number',
-        'platform',
+        'is_active',
         'website',
         'reference_by',
         'profile_description',

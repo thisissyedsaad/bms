@@ -171,3 +171,7 @@ label.required::after {
 .alert {
     padding: 0.71rem 1rem !important;
 }
+
+p.font-weight-bolder {
+    font-size: 25px;
+}

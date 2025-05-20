@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Client;
+use App\Models\Source;
 use Auth;
 
 class ClientController extends Controller
@@ -32,10 +33,6 @@ class ClientController extends Controller
             });
         }
 
-        if ($request->has('platform') && $request->input('platform') != '') {
-            $clients->where('platform', $request->input('platform'));
-        }
-
         $clients = $clients->paginate(10); // Adjust pagination as needed
 
         return view('admin.clients.index', compact('clients'));
@@ -50,7 +47,8 @@ class ClientController extends Controller
     public function create()
     {
         $countries = Country::get();
-        return view('admin.clients.create', compact('countries'));
+        $sources = Source::get();
+        return view('admin.clients.create', compact('countries', 'sources'));
     }
 
     /**
@@ -78,7 +76,8 @@ class ClientController extends Controller
             'show_city' => 'nullable|boolean',
             'show_country' => 'nullable|boolean',
             'website' => 'nullable|url|max:255',
-            'platform' => 'nullable|string|max:255',
+            'source_id' => 'nullable|exists:sources,id',
+            'is_active' => 'nullable|boolean',
             'reference_by' => 'nullable|string|max:255',
         ]));
 
@@ -88,7 +87,6 @@ class ClientController extends Controller
 
         $userId = Auth::user()->id;
         $validated['created_by'] = $userId;
-        $validated['source_id'] = 1;
         
         // Extract address data
         $addressData = [
@@ -131,8 +129,8 @@ class ClientController extends Controller
         $client->load(['address']);
         // Get data, not just those with logos
         $countries = Country::get();
-
-        return view('admin.clients.edit', compact('client', 'countries'));
+        $sources = Source::get();
+        return view('admin.clients.edit', compact('client', 'countries', 'sources'));
     }
 
     public function update(Request $request, Client $client)
@@ -154,7 +152,8 @@ class ClientController extends Controller
             'show_city' => 'nullable|boolean',
             'show_country' => 'nullable|boolean',
             'website' => 'nullable|url|max:255',
-            'platform' => 'nullable|string|max:255',
+            'source_id' => 'nullable|exists:sources,id',
+            'is_active' => 'nullable|boolean',
             'reference_by' => 'nullable|string|max:255',
         ]));
 
@@ -167,6 +166,7 @@ class ClientController extends Controller
 
         $userId = Auth::user()->id;
         $validated['updated_by'] = $userId;
+        $validated['is_active'] = $request->has('is_active') ? true : false;
 
         $client->update($validated);
 

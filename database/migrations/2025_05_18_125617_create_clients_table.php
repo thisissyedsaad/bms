@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('tagline', 50)->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('whatsapp_number')->nullable();
-            $table->string('platform')->nullable();
             $table->string('website')->nullable();
             $table->string('reference_by')->nullable();
             $table->text('profile_description')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

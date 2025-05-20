@@ -23,87 +23,49 @@
                         </div>
                     </div>
                 @endif
-
                 <!-- Dashboard Stats -->
                 <section id="dashboard-stats">
-                    <div class="row match-height">
-                        <!-- Statistics Card -->
-                        <div class="col-xl-12 col-md-6 col-12">
-                            <div class="card card-statistics">
-                                <div class="card-header">
-                                    <h4 class="card-title">Overview</h4>
-                                    <div class="d-flex align-items-center">
-                                        <p class="card-text mr-25 mb-0">Updated just now</p>
-                                    </div>
+                    <div class="row">
+                        <!-- Total Clients -->
+                        <div class="col-xl-3 col-md-6 col-sm-12">
+                            <div class="card text-center shadow rounded-lg border-0 bg-primary text-white">
+                                <div class="card-body">
+                                    <i data-feather="users" class="font-large-2 mb-1"></i>
+                                    <p class="font-weight-bolder">{{$totalClients}}</p>
+                                    <p class="mb-0">Total Clients</p>
                                 </div>
-                                <div class="card-body statistics-body">
-                                    <div class="row">
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
-                                            <div class="media">
-                                                <div class="avatar bg-light-primary mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="users" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalClients}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total Clients</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
-                                            <div class="media">
-                                                <div class="avatar bg-light-info mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="message-square" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalProjects}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total Projects</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
-                                            <div class="media">
-                                                <div class="avatar bg-light-info mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="message-square" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalActiveProjects}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Active Projects</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
-                                            <div class="media">
-                                                <div class="avatar bg-light-info mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="message-square" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalCompletedProjects}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Completed Projects</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-xl-3 col-sm-6 col-12">
-                                            <div class="media">
-                                                <div class="avatar bg-light-primary mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="users" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalTeamMembers}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total Teams</p>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Projects -->
+                        <div class="col-xl-3 col-md-6 col-sm-12">
+                            <div class="card text-center shadow rounded-lg border-0 bg-success text-white">
+                                <div class="card-body">
+                                    <i data-feather="briefcase" class="font-large-2 mb-1"></i>
+                                    <p class="font-weight-bolder">{{$totalProjects}}</p>
+                                    <p class="mb-0">Total Projects</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Projects -->
+                        <div class="col-xl-3 col-md-6 col-sm-12">
+                            <div class="card text-center shadow rounded-lg border-0 bg-warning text-white">
+                                <div class="card-body">
+                                    <i data-feather="activity" class="font-large-2 mb-1"></i>
+                                    <p class="font-weight-bolder">{{$totalActiveProjects}}</p>
+                                    <p class="mb-0">Active Projects</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Completed Projects -->
+                        <div class="col-xl-3 col-md-6 col-sm-12">
+                            <div class="card text-center shadow rounded-lg border-0 bg-info text-white">
+                                <div class="card-body">
+                                    <i data-feather="check-circle" class="font-large-2 mb-1"></i>
+                                    <p class="font-weight-bolder">{{$totalCompletedProjects}}</p>
+                                    <p class="mb-0">Completed Projects</p>
                                 </div>
                             </div>
                         </div>

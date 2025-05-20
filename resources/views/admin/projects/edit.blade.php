@@ -25,10 +25,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="client_id">Client</label>
-                                    <select class="form-control @error('client_id') is-invalid @enderror" name="client_id" id="client_id">
-                                        <option value="">-- Select Client --</option>
+                                    <select class="form-control @error('client_id') is-invalid @enderror" name="client_id" id="client_id" required>
+                                        <option value="" disabled {{ old('client_id', $project->client_id) ? '' : 'selected' }}>-- Select Client --</option>
                                         @foreach($clients as $client)
-                                            <option value="{{ $client->id }}" {{ old('client_id', $project->client_id) == $client->id ? 'selected' : '' }}>
+                                            <option value="{{ $client->id }}"
+                                                {{ old('client_id', $project->client_id) == $client->id ? 'selected' : '' }}
+                                                {{ $client->is_active ? '' : 'disabled' }}
+                                                style="{{ $client->is_active ? '' : 'background-color: #d0d0d0;' }}">
                                                 {{ $client->full_name }} ({{ $client->profile_name }})
                                             </option>
                                         @endforeach
@@ -164,13 +167,19 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="platform">Platform</label>
-                                    <select class="form-control @error('platform') is-invalid @enderror" name="platform" id="platform">
-                                        <option value="direct" {{ old('platform', $project->platform) == 'direct' ? 'selected' : '' }}>Direct</option>
-                                        <option value="upwork" {{ old('platform', $project->platform) == 'upwork' ? 'selected' : '' }}>Upwork</option>
-                                        <option value="reference" {{ old('platform', $project->platform) == 'reference' ? 'selected' : '' }}>Reference</option>
+                                    <label for="source_id">Source</label>
+                                    <select class="form-control @error('source_id') is-invalid @enderror" name="source_id" id="source_id" required>
+                                        <option value="" disabled {{ old('source_id', $project->source_id) ? '' : 'selected' }}>-- Select Source --</option>
+                                        @foreach($sources as $source)
+                                            <option value="{{ $source->id }}"
+                                                {{ old('source_id', $project->source_id) == $source->id ? 'selected' : '' }}
+                                                {{ $source->is_active ? '' : 'disabled' }}
+                                                style="{{ $source->is_active ? '' : 'background-color: #d0d0d0;' }}">
+                                                {{ $source->name }} ({{ Str::title(str_replace('_', ' ', $source->commission_type)) }})
+                                            </option>
+                                        @endforeach
                                     </select>
-                                    @error('platform')
+                                    @error('source_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

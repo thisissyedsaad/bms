@@ -149,7 +149,8 @@
                                         <th>Assigned To</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <th>Platform</th>
+                                        <!-- <th>Platform</th> -->
+                                        <th>Source</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -172,7 +173,7 @@
                                             @endphp
                                             <td>{{ $formatDate($project->start_date) }}</td>
                                             <td>{{ $formatDate($project->end_date) }}</td>
-                                            <td>{{ Str::ucfirst($project->platform) ?? 'N/A' }} </td>
+                                            <td>{{ Str::ucfirst($project->source->name) ?? 'N/A' }} ({{ Str::ucfirst($project->source->is_platform) == 1 ? 'Platform' : 'Non-platform' }}) </td>
                                             <td>
                                                 @php
                                                     $status = strtolower($project->status);

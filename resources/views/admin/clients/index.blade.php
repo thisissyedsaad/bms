@@ -26,18 +26,11 @@
                     <div class="card-body">
                         <form action="{{ route('clients.index') }}" method="GET">
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="search">Search Clients</label>
                                     <input type="text" class="form-control" name="search" id="search" value="{{ request('search') }}" placeholder="Enter name, email, etc.">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="platform_filter">Platform</label>
-                                    <select class="form-control" id="platform_filter" name="platform">
-                                        <option value="">All Platforms</option>
-                                        <option value="direct" {{ request('platform') == 'direct' ? 'selected' : '' }}>Direct</option>
-                                        <option value="upwork" {{ request('platform') == 'upwork' ? 'selected' : '' }}>Upwork</option>
-                                        <option value="reference" {{ request('platform') == 'reference' ? 'selected' : '' }}>Reference</option>
-                                    </select>
+                                <div class="form-group col-md-2 d-flex align-items-end">
                                 </div>
                                 <div class="form-group col-md-2 d-flex align-items-end">
                                     <button type="submit" class="btn btn-primary btn-block">Filter</button>
@@ -62,7 +55,8 @@
                                     <th>Email</th>
                                     <th>Whatsapp</th>
                                     <th>Mobile</th>
-                                    <th>Platform</th>
+                                    <th>Source</th>
+                                    <th>Is Active</th>
                                     <th>Created</th>
                                     <th>Action</th>
                                 </tr>
@@ -81,7 +75,17 @@
                                         <td>{{ $client->email ?? 'N/A' }}</td>
                                         <td>{{ $client->whatsapp_number ?? 'N/A' }}</td>
                                         <td>{{ $client->mobile_number ?? 'N/A' }}</td>
-                                        <td>{{ ucfirst($client->platform) ?? 'N/A' }}</td>
+                                        <td>{{ Str::ucfirst($client->source->name) ?? 'N/A' }} ({{ Str::ucfirst($client->source->is_platform) == 1 ? 'Platform' : 'Non-platform' }}) </td>
+                                        <td>
+                                            @php
+                                                $is_active = strtolower($client->is_active);
+                                            @endphp
+                                            @if ($is_active === '1')
+                                                <span class="badge badge-success">Yes</span>
+                                            @else
+                                                <span class="badge badge-secondary">No</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $client->created_at->timezone('Asia/Karachi')->format('d-M-Y h:i A') }}</td>
                                         <td>
                                             <div class="d-flex">

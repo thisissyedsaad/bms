@@ -103,12 +103,22 @@
                                     </div>
                                 </div>
 
+                                <!-- Sources -->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="platform">Platform</label>
-                                        <input type="text" class="form-control @error('platform') is-invalid @enderror"
-                                            id="platform" name="platform" value="{{ old('platform') }}" maxlength="50">
-                                        @error('platform')
+                                        <label for="source_id">Source</label>
+                                        <select class="form-control @error('source_id') is-invalid @enderror" name="source_id" id="source_id" required>
+                                            <option value="" disabled {{ old('source_id') ? '' : 'selected' }}>-- Select Source --</option>
+                                            @foreach($sources as $source)
+                                            <option value="{{ $source->id }}"
+                                                {{ old('source_id') == $source->id ? 'selected' : '' }}
+                                                {{ $source->is_active ? '' : 'disabled' }}
+                                                style="{{ $source->is_active ? '' : 'background-color: #d0d0d0;' }}">
+                                                {{ $source->name }} ({{ Str::title(str_replace('_', ' ', $source->commission_type)) }})
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        @error('source_id')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -145,6 +155,21 @@
                                             id="website" name="website" value="{{ old('website') }}"
                                             placeholder="https://example.com">
                                         @error('website')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <div class="form-check mt-1">
+                                            <input class="form-check-input" type="checkbox" name="is_active" id="is_active"
+                                                value="1" {{ old('is_active') ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="is_active">
+                                                Is Active ?
+                                            </label>
+                                        </div>
+                                        @error('is_active')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

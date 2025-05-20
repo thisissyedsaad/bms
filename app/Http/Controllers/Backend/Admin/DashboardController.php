@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $totalClients = Client::count();
         $totalProjects = Project::count();
         $totalActiveProjects = Project::where('status', 'ongoing')->count();
-        $totalCompletedProjects = Project::where('status', 'ongoing')->count();
+        $totalCompletedProjects = Project::where('status', 'completed')->count();
         $totalTeamMembers = 0; // Assuming you have a TeamMember model
         // $totalTeamMembers = TeamMember::count(); // Assuming you have a TeamMember model
 

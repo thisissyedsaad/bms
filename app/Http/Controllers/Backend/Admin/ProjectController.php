@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Client;
+use App\Models\Source;
 use App\Models\Country;
 use Auth;
 use Carbon\Carbon;
@@ -97,7 +98,9 @@ class ProjectController extends Controller
     public function create()
     {
         $clients = Client::get();
-        return view('admin.projects.create', compact('clients'));
+        $sources = Source::get();
+
+        return view('admin.projects.create', compact('clients', 'sources'));
     }
 
     /**
@@ -123,7 +126,7 @@ class ProjectController extends Controller
             'assigned_to' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
-            'platform' => 'required|in:direct,upwork,reference',
+            'source_id' => 'nullable|exists:sources,id',
             'status' => 'required|in:ongoing,completed,cancelled,hold',
         ]));
 
@@ -156,14 +159,15 @@ class ProjectController extends Controller
     {
         $countries = Country::get();
         $clients = Client::get();
-        return view('admin.projects.edit', compact('project', 'countries', 'clients'));
+        $sources = Source::get();
+        return view('admin.projects.edit', compact('project', 'countries', 'clients', 'sources'));
     }
 
     public function update(Request $request, Project $project)
     {
         // Get dynamic keys for validation
         $validated = $request->validate(array_merge([
-            'client_id' => 'required|exists:clients,id',
+            'client_id' => 'nullable|exists:clients,id',
             'title' => 'required|string|max:255',
             'conversion_rate' => 'nullable|numeric',
             'total_amount' => 'nullable|numeric',
@@ -176,7 +180,7 @@ class ProjectController extends Controller
             'assigned_to' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
-            'platform' => 'required|in:direct,upwork,reference',
+            'source_id' => 'nullable|exists:sources,id',
             'status' => 'required|in:ongoing,completed,cancelled,hold',
         ]));
 

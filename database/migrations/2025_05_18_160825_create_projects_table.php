@@ -32,7 +32,6 @@ return new class extends Migration
             $table->string('assigned_to')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->enum('platform', ['direct', 'upwork', 'reference'])->default('direct');
             $table->enum('status', ['ongoing', 'completed', 'hold', 'cancelled'])->default('ongoing');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
