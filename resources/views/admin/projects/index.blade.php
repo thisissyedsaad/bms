@@ -43,40 +43,24 @@
                                                 value="{{ request('search') }}" placeholder="Enter title, client name, etc.">
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-3">
+
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="client_filter">Client</label>
-                                            <select class="form-control" id="client_filter" name="client_id">
+                                            <label for="client_id">Client</label>
+                                            <select class="form-control @error('client_id') is-invalid @enderror" name="client_id" id="client_id">
                                                 <option value="">All Clients</option>
                                                 @foreach($allClients as $client)
-                                                    <option value="{{ $client->id }}" {{ request('client_id') == $client->id ? 'selected' : '' }}>
-                                                        {{ $client->full_name }}
+                                                    <option value="{{ $client->id }}"
+                                                        {{ request('client_id') == $client->id ? 'selected' : '' }}">
+                                                        {{ $client->full_name }} ({{ $client->profile_name }})
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('client_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                    </div> -->
-
-<div class="col-md-3">
-    <div class="form-group">
-        <label for="client_id">Client</label>
-        <select class="form-control @error('client_id') is-invalid @enderror" name="client_id" id="client_id">
-            <option value="">All Clients</option>
-            @foreach($allClients as $client)
-                <option value="{{ $client->id }}"
-                    {{ request('client_id') == $client->id ? 'selected' : '' }}
-                    {{ $client->is_active ? '' : 'disabled' }}
-                    style="{{ $client->is_active ? '' : 'background-color: #d0d0d0;' }}">
-                    {{ $client->full_name }} ({{ $client->profile_name }})
-                </option>
-            @endforeach
-        </select>
-        @error('client_id')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-</div>
-
+                                    </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
