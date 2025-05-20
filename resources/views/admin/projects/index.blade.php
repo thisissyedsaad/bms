@@ -149,7 +149,6 @@
                                         <th>Assigned To</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <!-- <th>Platform</th> -->
                                         <th>Source</th>
                                         <th>Status</th>
                                         <th>Action</th>

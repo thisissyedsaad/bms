@@ -114,8 +114,11 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = Client::with('projects')->findOrFail($id);
-        return view('admin.clients.view', compact('client'));
+        $client = Client::findOrFail($id);
+        if($client)
+            $projects = $client->projects()->paginate(10); 
+
+        return view('admin.clients.view', compact('client', 'projects'));
     }
 
     /**

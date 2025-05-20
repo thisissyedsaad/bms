@@ -30,7 +30,7 @@
                             <p><strong>Email:</strong> {{ $client->email }}</p>
                             <p><strong>Mobile Number:</strong> {{ $client->mobile_number }}</p>
                             <p><strong>WhatsApp Number:</strong> {{ $client->whatsapp_number }}</p>
-                            <p><strong>Platform:</strong> {{ $client->platform }}</p>
+                            <p><strong>Source:</strong> {{ $client->source->name }}</p>
                             <p><strong>Reference By:</strong> {{ $client->reference_by }}</p>
                             <p><strong>Tagline:</strong> {{ $client->tagline }}</p>
                             <p><strong>Website:</strong>
@@ -67,24 +67,37 @@
                     <div class="mt-4">
                         <h4>Associated Projects</h4>
 
-                        @if($client->projects->count())
+                        @if($projects->count())
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-hover text-nowrap">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>#</th>
                                             <th>Project Title</th>
-                                            <th>Status</th>
+                                            <th>Project Type</th>
+                                            <th>Assigned To</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
-                                            <th>Actions</th>
+                                            <th>Source</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($client->projects as $index => $project)
+                                        @foreach($projects as $index => $project)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $project->title }}</td>
+                                                <td>{{ Str::ucfirst($project->project_type) ?? 'N/A' }}</td>
+                                                <td>{{ Str::ucfirst($project->assigned_to) ?? 'N/A' }} </td>
+                                                @php
+                                                    $formatDate = function($date) {
+                                                        return $date ? \Carbon\Carbon::parse($date)->format('m-d-y') : 'N/A';
+                                                    };
+                                                @endphp
+                                                <td>{{ $formatDate($project->start_date) }}</td>
+                                                <td>{{ $formatDate($project->end_date) }}</td>
+                                                <td>{{ Str::ucfirst($project->source->name) ?? 'N/A' }} ({{ Str::ucfirst($project->source->is_platform) == 1 ? 'Platform' : 'Non-platform' }}) </td>
                                                 <td>
                                                     @php
                                                         $status = strtolower($project->status);
@@ -94,13 +107,14 @@
                                                     @elseif ($status === 'ongoing')
                                                         <span class="badge badge-warning">Ongoing</span>
                                                     @elseif ($status === 'hold')
-                                                        <span class="badge badge-danger">Hold</span>
+                                                        <span class="badge badge-info">Hold</span>
+                                                    @elseif ($status === 'cancelled')
+                                                        <span class="badge badge-danger">Cancelled</span>
                                                     @else
                                                         <span class="badge badge-secondary">N/A</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $project->start_date }}</td>
-                                                <td>{{ $project->end_date }}</td>
+
                                                 <td>
                                                     <!-- <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-info">View</a> -->
                                                     <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-primary">Edit</a>
@@ -114,8 +128,9 @@
                             <p>No projects found for this client.</p>
                         @endif
                     </div>
-
-
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $projects->links('pagination::bootstrap-4') }}
+                    </div>
 
                     <div class="mt-3">
                         <a href="{{ route('clients.index') }}" class="btn btn-secondary">Back to Clients</a>
